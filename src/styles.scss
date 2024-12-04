@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+}
+@layer components{
+
+ /* #region Button */
+ .b{
+  @apply bg-slate-600;
+   }
+ .btn-primary{
+  @apply text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-xs px-5 text-nowrap  py-2.5 text-center;
+ }
+/* #endregion */
+
+
+
+}
+

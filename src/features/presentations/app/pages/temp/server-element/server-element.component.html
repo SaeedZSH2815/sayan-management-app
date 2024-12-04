@@ -1,0 +1,20 @@
+<div class="flex flex-col border mt-2">
+ <p>server-element</p>
+
+  <ng-container *ngIf="element.type==1">
+    <div class="p-2 mt-2 border rounded-lg bg-gray-500">
+      <span class="text-white">Server Name: {{element.name}}</span>
+    </div>
+  </ng-container>
+
+
+  <ng-container *ngIf="element.type==2">
+    <div class="p-2 mt-2 border rounded-lg bg-blue-400">
+      <span class="text-white">Server Name: {{element.name}}</span>
+    </div>
+  </ng-container>
+
+
+  <div class="p-4 bg-slate-200 rounded-lg">div1</div>
+  <ng-content></ng-content>
+</div>

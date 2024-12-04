@@ -1,0 +1,23 @@
+<div class="flex flex-col">
+  <label >Server Name</label>
+  <input class=" border-2"  type="text" name="serverNametxt"
+         id="serverNametxtId"  [(ngModel)]="newServerName" #ServerName>
+  <label >Content</label>
+  <input class="border-2" type="text" name="serverContenttxt"
+   id="serverContenttxtId" [(ngModel)]="newServerContent" #ServerContent>
+
+  <div class="flex pt-2 justify-between ">
+
+    <div class="flex-initial ">
+      <button type="button" class="btn-primary"
+               id="addServerId" (click)="AddServer($event.target)">Add Server</button>
+    </div>
+
+    <div class="flex-initial ">
+      <button type="button" class="btn-primary"
+              id="addServerBlueId"
+              (click)="AddServer($event.target)">Add Server Blue</button>
+    </div>
+  </div>
+
+</div>
