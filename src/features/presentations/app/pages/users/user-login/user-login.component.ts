@@ -25,9 +25,9 @@ export const getUserLoginUseCaseProvider = {
 })
 export class UserLoginComponent {
 
-  constructor(public userloginUseCase: UserLoginUseCase) {
+  constructor(/*public userloginUseCase: UserLoginUseCase*/) {
     let auth = new AuthenticateModel({ userNameOrEmailAddress: "admin", password: "123qwe", rememberClient: false });
-    this.userloginUseCase.exceute(auth).subscribe((res) => console.log(res));
+ //   this.userloginUseCase.exceute(auth).subscribe((res) => console.log(res));
   }
 
 }

@@ -1,20 +1,45 @@
-
-<br>
+<br />
 <div class="container mx-auto px-5">
   <h2 class="bg-blue-400 text-center mx-auto px-4">First Component</h2>
   <div class="py-2">
-    <app-cockpit
-                 (addServer)="OnAddServer($event)"
-                 (addServerBlue)="OnAddServerBlue($event)"
-                 ></app-cockpit>
-  </div>
-  <hr>
-  <div *ngIf="serverElementList != undefined">
+    <h1 *appUnless="serverElementList != undefined">d</h1>
 
-    <app-server-element  *ngFor="let serverElement of serverElementList"
-                         [srvElement] ="serverElement">
-     <h2 class="bg-red-500">-----------</h2>
+    <ng-template [ngIf]="serverElementList != undefined" [ngIfElse]="tempElse">
+      <h1>ng Templete</h1>
+    </ng-template>
+
+    <ng-template #tempElse>
+      NG Templete Else
+    </ng-template>
+
+    <ng-container *ngIf="serverElementList != undefined">
+      <h2>container</h2>
+    </ng-container>
+
+    <app-cockpit (addServer)="OnAddServer($event)"
+                 (addServerBlue)="OnAddServerBlue($event)">
+    </app-cockpit>
+  </div>
+  <hr />
+  <div *ngIf="serverElementList != undefined">
+    <p [appHighLightBlue]="'red'">this Is appHighLightBlue</p>
+
+    <p appHighLightBlue [defaultColor]="'yellow'">
+      this Is appHighLightBlue....
+    </p>
+
+    <p *appUnless="condition" class="unless a">
+      (A) This paragraph is displayed because the condition is false.
+    </p>
+
+    <p *appUnless="!condition" class="unless b">
+      (B) Although the condition is true,
+      this paragraph is displayed because appUnless is set to false.
+    </p>
+
+    <app-server-element *ngFor="let serverElement of serverElementList"
+                        [srvElement]="serverElement">
+      <h2 class="bg-red-500">-----------</h2>
     </app-server-element>
   </div>
-
 </div>
