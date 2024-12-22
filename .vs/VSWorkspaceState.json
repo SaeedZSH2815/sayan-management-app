@@ -3,13 +3,14 @@
     "",
     "\\src",
     "\\src\\core",
-    "\\src\\core\\services",
+    "\\src\\core\\directives",
+    "\\src\\core\\directives\\high-light",
+    "\\src\\core\\directives\\toggle-bgcolor-blue",
     "\\src\\features",
     "\\src\\features\\presentations",
     "\\src\\features\\presentations\\app",
-    "\\src\\features\\presentations\\app\\pages",
-    "\\src\\features\\presentations\\app\\pages\\temp",
-    "\\src\\features\\presentations\\app\\pages\\temp\\first"
+    "\\src\\features\\presentations\\app\\main"
   ],
+  "SelectedNode": "\\src\\core\\directives\\toggle-bgcolor-blue\\toggle-bg-color-blue.directive.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -7,11 +7,12 @@ import { HighLightBlueDirective } from '../../../../../../core/directives/high-l
 import { UnlessDirective } from '../../../../../../core/directives/unless/unless.directive';
 import { MainComponent } from '../../../main/main.component';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler';
+import { ToggleBgColorBlueDirective } from '../../../../../../core/directives/toggle-bgcolor-blue/toggle-bg-color-blue.directive';
 
 @Component({
   selector: 'app-first',
   imports: [CockpitComponent, ServerElementComponent, CommonModule,
-    HighLightBlueDirective, UnlessDirective
+    HighLightBlueDirective, UnlessDirective, ToggleBgColorBlueDirective
            ,
   ],
   templateUrl: './first.component.html',

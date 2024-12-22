@@ -2,6 +2,7 @@
 <div class="container mx-auto px-5">
   <h2 class="bg-blue-400 text-center mx-auto px-4">First Component</h2>
   <div class="py-2">
+    <p class="py-2" appToggleBgColorBlue>appToggleBgColorBlue</p>
     <h1 *appUnless="serverElementList != undefined">d</h1>
 
     <ng-template [ngIf]="serverElementList != undefined" [ngIfElse]="tempElse">
@@ -22,7 +23,7 @@
   </div>
   <hr />
   <div *ngIf="serverElementList != undefined">
-    <p [appHighLightBlue]="'red'">this Is appHighLightBlue</p>
+    <p  [appHighLightBlue]="'red'">this Is appHighLightBlue</p>
 
     <p appHighLightBlue [defaultColor]="'yellow'">
       this Is appHighLightBlue....
