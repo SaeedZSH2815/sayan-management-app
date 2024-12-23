@@ -8,9 +8,11 @@ import { UserRepository } from '../../../data-infru/repositories/user-repository
 import { IUserRepository } from '../../../domain/repositories/iuser-repository';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UnlessDirective } from '../../../../core/directives/unless/unless.directive';
+import { AccountService } from '../../../../core/services/account-service/account.service';
+import { LogService } from '../../../../core/services/log-service/log.service';
 
 export const appConfig: ApplicationConfig = {
-  
+
   providers: [
 
     provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
@@ -20,8 +22,10 @@ export const appConfig: ApplicationConfig = {
     { provide: IUserRepository, useClass: UserRepository },
     provideAnimationsAsync(),
     provideAnimationsAsync(),
- 
-    
+    AccountService,
+    LogService
+
+
 
   ]
 };

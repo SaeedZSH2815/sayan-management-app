@@ -7,9 +7,12 @@ import { Directive, ElementRef, HostBinding,  Renderer2, TemplateRef, ViewContai
 export class ToggleBgColorBlueDirective {
 
 
-  @HostBinding('class.bg-blue-500') isp = false;
+  @HostBinding('class.bg-blue-500') isp = true;
 
-  constructor(private _element: ElementRef, private _renderer: Renderer2) {
+  constructor(/* Inject Important..... */
+              private _element: ElementRef, private _renderer: Renderer2,
+              /*private _vcRef: ViewContainerRef Not Inject*/
+  ) {
   }
 
 
