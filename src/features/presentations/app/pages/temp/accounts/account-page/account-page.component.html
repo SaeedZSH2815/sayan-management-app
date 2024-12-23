@@ -1,7 +1,29 @@
 <div class="container mx-auto px-4 bg-slate-500">
- <h1 class="text-cyan-50">Account Page</h1>
- <div class="py-2">
-  <app-add-ccount></app-add-ccount>
- </div>
 
+ <h1 class="text-cyan-50">Account Page</h1>
+
+  <div class="py-2">
+   <app-add-ccount></app-add-ccount>
+  </div>
+
+  
+   
+    <div><h2>Account List </h2></div>
+     
+     
+     <ng-container *ngIf="accountList != undefined"  >
+       <div class="p-2 border-2" >
+         <app-account *ngFor="let item of accountList"
+          [accountItem] = "item"
+          ></app-account>     
+       </div>
+        
+     </ng-container>
+     <div class="pt-2"></div>
+       
+     
+     
+     
+    
+  
 </div>

@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     AccountService,
     LogService
-
+    
 
 
   ]
