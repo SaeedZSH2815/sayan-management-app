@@ -6,24 +6,24 @@
    <app-add-ccount></app-add-ccount>
   </div>
 
-  
-   
+
+
     <div><h2>Account List </h2></div>
-     
-     
+
+
      <ng-container *ngIf="accountList != undefined"  >
-       <div class="p-2 border-2" >
-         <app-account *ngFor="let item of accountList"
-          [accountItem] = "item"
-          ></app-account>     
+       <div class="p-2 border-2" *ngFor="let item of accountList" >
+         <app-account
+           [accountItem] = "item"  >
+          </app-account>
        </div>
-        
+
      </ng-container>
      <div class="pt-2"></div>
-       
-     
-     
-     
-    
-  
+
+
+
+
+
+
 </div>

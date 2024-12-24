@@ -1,4 +1,5 @@
 export interface AccountInterface {
-    AccountName : string;
     AccountId   : number;
+    AccountName : string;
+    Status      : string;
 }

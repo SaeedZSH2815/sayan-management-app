@@ -1,1 +1,18 @@
-<h2>{{accountItem?.AccountId}} {{accountItem?.AccountName}}</h2>
+<div class="border-2 px-2 py-6  bg-slate-200">
+  <h1>Then Account Info</h1>
+  <h3 class="font-bold text-amber-600">
+    Account ID : {{accountItem?.AccountId}}</h3>
+
+    <h3 class="font-bold text-amber-600">
+     Account Name : {{accountItem?.AccountName}}</h3>
+    <h3 class="font-bold text-amber-600">
+     Account Status :
+     <span [ngClass]="{ 'bg-red-500': !IsActive(accountItem?.Status) , 'text-white':!IsActive(accountItem?.Status) }" >{{accountItem?.Status}}</span>   </h3>
+
+   <div>
+     <input (click)="onSetStatus(2)" class="p-2 border-2 hover:border-white hover:font-semibold" type="button" value="Set Hidden">
+     <input (click)="onSetStatus(1)"class="p-2 border-2 hover:border-white hover:font-semibold" type="button" value="Set Active">
+   </div>
+  </div>
+
+
