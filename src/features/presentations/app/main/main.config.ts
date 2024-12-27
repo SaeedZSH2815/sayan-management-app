@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { UnlessDirective } from '../../../../core/directives/unless/unless.directive';
 import { AccountService } from '../../../../core/services/account-service/account.service';
 import { LogService } from '../../../../core/services/log-service/log.service';
+import { UserService } from '../../../../core/services/user.service';
 
 export const appConfig: ApplicationConfig = {
 
@@ -23,7 +24,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideAnimationsAsync(),
     AccountService,
-    LogService
+    LogService,
+    
     
 
 

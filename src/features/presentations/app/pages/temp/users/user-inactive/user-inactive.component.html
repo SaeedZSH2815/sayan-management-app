@@ -1,1 +1,11 @@
-<p>user-inactive works!</p>
+<div class="p-2">
+    <h2 class="text-red-400">User Inactive List</h2>
+    <ul *ngIf="inactiveUsers != undefined && inactiveUsers.length>0">
+       <li class="border-2" *ngFor="let user of inactiveUsers;let I=index ">
+           <span  class="p-4 text-slate-700" (click)="setActive(I,$event)" > {{appUtility.ARoundStr(user,5)}} | </span>
+           
+           <a href="#" class="text-lg text-blue-500" (click)="setActive(I,$event)">Set Inactive</a>
+       </li>
+    </ul>
+   </div>
+   

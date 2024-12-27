@@ -21,9 +21,12 @@ export class MainComponent {
 
   }
   OnRouter(clId : number):void{
-    if(clId == 1)
-     this._router.navigate(['/login']);
-    else
-    this._router.navigate(['/account']);
+    switch(clId){
+      case 1 : { this._router.navigate(['/login']);break;}
+      case 2 : { this._router.navigate(['/account']);break;}
+      case 3 : { this._router.navigate(['/users']);break;}
+    }
+    
+ 
   }
 }

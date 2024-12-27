@@ -6,5 +6,7 @@ import { AccountPageComponent } from '../pages/temp/accounts/account-page/accoun
 export const routes: Routes = [
 
   { path: "login", component: UserLoginComponent },
-  { path: "account", component: AccountPageComponent }
+  { path: "account", component: AccountPageComponent },
+  { path: "users", 
+     loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent) }
 ];
