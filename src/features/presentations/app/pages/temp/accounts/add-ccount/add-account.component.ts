@@ -7,7 +7,7 @@ import { AccountService } from '../../../../../../../core/services/account-servi
   templateUrl: './add-ccount.component.html',
   styleUrl: './add-ccount.component.scss'
 })
-export class AddCcountComponent {
+export class AddAccountComponent {
   constructor(private ac : AccountService){
     this.ac.statusUpdatedEmit.subscribe((e)=>{console.log(e); alert(e)});
 
