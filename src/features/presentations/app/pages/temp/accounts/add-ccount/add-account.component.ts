@@ -4,8 +4,8 @@ import { AccountService } from '../../../../../../../core/services/account-servi
 @Component({
   selector: 'app-add-ccount',
   imports: [],
-  templateUrl: './add-ccount.component.html',
-  styleUrl: './add-ccount.component.scss'
+  templateUrl: './add-account.component.html',
+  styleUrl: './add-account.component.scss'
 })
 export class AddAccountComponent {
   constructor(private ac : AccountService){

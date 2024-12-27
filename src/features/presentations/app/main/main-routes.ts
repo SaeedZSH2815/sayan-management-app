@@ -7,6 +7,11 @@ export const routes: Routes = [
 
   { path: "login", component: UserLoginComponent },
   { path: "account", component: AccountPageComponent },
+
   { path: "users", 
-     loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent) }
+     loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent) },
+
+  { path: "users/:id", 
+      loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent) }
+ 
 ];

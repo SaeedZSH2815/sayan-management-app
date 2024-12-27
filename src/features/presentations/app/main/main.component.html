@@ -4,4 +4,13 @@
   <li (click)="OnRouter(3)">User Page</li>
 </ul>
 
+<div>
+  <ul class="flex flex-row gap-5 bg-slate-100 p-2">
+    <li ><a  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/login']" href="#">     Login Page</a> </li>
+    <li ><a  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/account']" href="#">   Account Page</a> </li>
+    <li ><a  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/users']"  href="#" >     User Page</a> </li>
+  </ul>
+</div>
+
+
 <router-outlet>

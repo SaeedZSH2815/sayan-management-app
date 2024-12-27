@@ -1,5 +1,27 @@
 <div class="container p-2 mx-auto">
-  <app-user-active></app-user-active>
-  <app-user-inactive></app-user-inactive>
+  <ng-container *ngIf="userList != undefined ">
+    <div>
+      <ul>
+        <li *ngFor="let item of userList;let I = index">
+          {{item.userName}} | <input class="bg-slate-600 p-2" type="button" value="Show User">
+        </li>
+      </ul>
+    </div>
+
+  </ng-container>
+
+  <ng-template [ngIf]="userId != undefined" [ngIfElse]="userIdElse">
+    <app-user-active></app-user-active>
+    <app-user-inactive></app-user-inactive>
+  </ng-template>
+
+  <ng-template #userIdElse>
+    <a class="hover:underline hover:text-blue-700" 
+      href="#" 
+      [queryParams]="{name:'saeed'}"
+      
+      [routerLink]="['/users',10]" >Show User Info</a>
+
+  </ng-template>
 </div>
 
