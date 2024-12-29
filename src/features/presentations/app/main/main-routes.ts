@@ -14,13 +14,10 @@ export const routes: Routes = [
      loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent),
 
      children:[
-          {path:":id",component:UserInfoComponent},
-          {path:":name",component:UserInfoComponent}
+          {path:"userInfo/:Id",component:UserInfoComponent,},
+          //{path:":name",component:UserInfoComponent}
       ]
 
   },
-
-  { path: "users/:id",
-      loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent) }
 
 ];

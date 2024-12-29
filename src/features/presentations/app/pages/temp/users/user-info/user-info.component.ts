@@ -11,6 +11,19 @@ import { Subscription } from 'rxjs';
   styleUrl: './user-info.component.scss'
 })
 export class UserInfoComponent implements OnInit,OnDestroy {
+   
+ 
+  private _userStateCode : number = 0;
+
+  public set userStateCode(clValue : number) {
+    this._userStateCode = clValue;
+  }
+
+  public get userStateCode() : number {
+    return this._userStateCode;
+  }
+  
+   
   userId? : number;
   routeSubscribtion? : Subscription;
   constructor(private activatedRoute : ActivatedRoute){
@@ -36,8 +49,26 @@ export class UserInfoComponent implements OnInit,OnDestroy {
         if (param['id'])
         {
          this.userId = param['id'];
-         console.log("param : ",param['id']);
+         if(this.userId)
+          this.userStateCode = 1;         
         }
+        else
+        if(param['name'])        {
+          this.userId = param['id'];
+          if(this.userId)
+           this.userStateCode = 1;         
+         }
+         switch(this.userStateCode){
+          case 1:{
+                  console.log("User 1",this.userStateCode)
+                  break;
+                 }
+          case 2:{
+                  console.log("User 1",this.userStateCode)
+                  break;
+                 }                 
+         }
+
       }
     );
   }
