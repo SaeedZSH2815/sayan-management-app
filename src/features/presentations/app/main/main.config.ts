@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
     { provide: IUserRepository, useClass: UserRepository },
     provideAnimationsAsync(),
-    provideAnimationsAsync(),
+    
     AccountService,
     LogService,
     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }

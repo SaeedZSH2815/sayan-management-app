@@ -12,10 +12,12 @@ import { Location } from '@angular/common';
   selector: 'app-users',
   imports: [RouterLink,
     RouterLink,RouterLinkActive,
-    RouterOutlet,CommonModule,UserInfoComponent,UserActiveComponent,UserInactiveComponent],
+    RouterOutlet,CommonModule,UserActiveComponent,UserInactiveComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  providers:[UserService,    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }]
+  providers:[UserService,   
+     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
+    ]
 })
 export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
 
@@ -27,7 +29,7 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
   constructor(private userService :UserService
              ,private activeRouter : ActivatedRoute
              ,private _router : Router
-             ,private location: Location
+  
              ){
 
 
@@ -76,11 +78,11 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
 
   setNavigate(clId : number):void{
     this.userId = clId;
-    console.log(this.activeRouter);
+
 
 
     this._router.navigate(["/users/userInfo/",clId],{
-                           queryParams:{userId:clId}, replaceUrl: true } ).then( ()=>{ } );
+                           queryParams:{userId:clId},/* replaceUrl: true*/ } );
 
     console.log("Na",clId);
   }

@@ -3,6 +3,7 @@ import { CompilerConfig } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppUtility } from '../../../../../../../utils/utility';
 
 @Component({
   selector: 'app-user-info',
@@ -24,52 +25,46 @@ export class UserInfoComponent implements OnInit,OnDestroy {
   }
 
 
-  userId? : number;
+  userId : number = 0;
   routeSubscribtion? : Subscription;
   constructor(private activatedRoute : ActivatedRoute){
-
-    console.log(this.activatedRoute.snapshot.queryParams);
-
-  if(this.activatedRoute.snapshot.params)
-  {
-    this.userId = this.activatedRoute.snapshot.params['id']
   }
-
-
-
- }
+  
   ngOnDestroy(): void {
-    console.log("ngOnDestroy");
-    if(this.routeSubscribtion){
-      this.routeSubscribtion.unsubscribe();
-    }
+
+   if(this.routeSubscribtion){
+    this.routeSubscribtion.unsubscribe();
+   }
   }
 
   ngOnInit(): void {
-
-    this.routeSubscribtion = this.activatedRoute.params.subscribe(
+      
+    this.routeSubscribtion = this.activatedRoute.queryParams.subscribe(
       (param : Params)=>{
-        if (param['id'])
+        if (param['userId'])
         {
-         this.userId = param['id'];
+          
+         this.userId = parseInt(param['userId']);
          if(this.userId)
-          this.userStateCode = this.userId+1;
+          this.userStateCode = this.userId;
+         console.log("parseInt",this.userStateCode);
         }
         else
         if(param['name'])        {
-          this.userId = param['id'];
+          this.userId = param['userId'];
           if(this.userId)
            this.userStateCode = 1;
          }
          switch(this.userStateCode){
           case 1:{
-                  console.log("User 1",this.userStateCode)
+                  console.log("User (1) ",this.userStateCode)
                   break;
                  }
           case 2:{
-                  console.log("User 1",this.userStateCode)
+                  console.log("User (2) ",this.userStateCode)
                   break;
                  }
+          default:{  console.log("User default ",this.userStateCode)}       
          }
 
       }
