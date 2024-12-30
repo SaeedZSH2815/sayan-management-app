@@ -11,7 +11,8 @@ import { UnlessDirective } from '../../../../core/directives/unless/unless.direc
 import { AccountService } from '../../../../core/services/account-service/account.service';
 import { LogService } from '../../../../core/services/log-service/log.service';
 import { UserService } from '../../../../core/services/user.service';
-
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouteReuseStrategy } from './CustomRouteReuseStrategy';
 export const appConfig: ApplicationConfig = {
 
   providers: [
@@ -25,8 +26,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     AccountService,
     LogService,
-    
-    
+    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
+
+
 
 
   ]

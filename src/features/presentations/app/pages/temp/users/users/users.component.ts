@@ -3,16 +3,19 @@ import { UserActiveComponent } from '../user-active/user-active.component';
 import { UserInactiveComponent } from '../user-inactive/user-inactive.component';
 import { UserService } from '../../../../../../../core/services/user.service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouteReuseStrategy, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserInfoComponent } from '../user-info/user-info.component';
-
+import { CustomRouteReuseStrategy } from '../../../../main/CustomRouteReuseStrategy';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-users',
-  imports: [RouterLink,RouterOutlet,CommonModule,UserInfoComponent,UserActiveComponent,UserInactiveComponent],
+  imports: [RouterLink,
+    RouterLink,RouterLinkActive,
+    RouterOutlet,CommonModule,UserInfoComponent,UserActiveComponent,UserInactiveComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  providers:[UserService]
+  providers:[UserService,    { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }]
 })
 export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
 
@@ -22,8 +25,13 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
   userList : {userId : number,userName : string}[] = [];
 
   constructor(private userService :UserService
-             ,private activeRouter : ActivatedRoute){
+             ,private activeRouter : ActivatedRoute
+             ,private _router : Router
+             ,private location: Location
+             ){
 
+
+              //this._router.routerState.root.component = UsersComponent;
   }
   ngAfterViewInit(): void {
 
@@ -31,6 +39,7 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
 
 
   ngOnDestroy(): void {
+    console.log("UsersComponent ngOnDestroy");
    if(this.routerSubscription)
    {
     this.routerSubscription.unsubscribe();
@@ -44,8 +53,6 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
                             userName:this.userService.activeUsers[index]});
 
     }
-    if (this.userList)
-     console.log(this.userList.slice());
 
     if(this.activeRouter.snapshot.params){
      this.userId = this.activeRouter.snapshot.params['id'];
@@ -65,5 +72,16 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
   }
   setUserId(clId : number):void{
     this.userId = clId;
+  }
+
+  setNavigate(clId : number):void{
+    this.userId = clId;
+    console.log(this.activeRouter);
+
+
+    this._router.navigate(["/users/userInfo/",clId],{
+                           queryParams:{userId:clId}, replaceUrl: true } ).then( ()=>{ } );
+
+    console.log("Na",clId);
   }
 }

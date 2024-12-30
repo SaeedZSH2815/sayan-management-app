@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './user-info.component.scss'
 })
 export class UserInfoComponent implements OnInit,OnDestroy {
-   
- 
+
+
   private _userStateCode : number = 0;
 
   public set userStateCode(clValue : number) {
@@ -22,15 +22,16 @@ export class UserInfoComponent implements OnInit,OnDestroy {
   public get userStateCode() : number {
     return this._userStateCode;
   }
-  
-   
+
+
   userId? : number;
   routeSubscribtion? : Subscription;
   constructor(private activatedRoute : ActivatedRoute){
 
+    console.log(this.activatedRoute.snapshot.queryParams);
+
   if(this.activatedRoute.snapshot.params)
   {
-
     this.userId = this.activatedRoute.snapshot.params['id']
   }
 
@@ -38,25 +39,27 @@ export class UserInfoComponent implements OnInit,OnDestroy {
 
  }
   ngOnDestroy(): void {
+    console.log("ngOnDestroy");
     if(this.routeSubscribtion){
       this.routeSubscribtion.unsubscribe();
     }
   }
 
   ngOnInit(): void {
+
     this.routeSubscribtion = this.activatedRoute.params.subscribe(
       (param : Params)=>{
         if (param['id'])
         {
          this.userId = param['id'];
          if(this.userId)
-          this.userStateCode = 1;         
+          this.userStateCode = this.userId+1;
         }
         else
         if(param['name'])        {
           this.userId = param['id'];
           if(this.userId)
-           this.userStateCode = 1;         
+           this.userStateCode = 1;
          }
          switch(this.userStateCode){
           case 1:{
@@ -66,10 +69,12 @@ export class UserInfoComponent implements OnInit,OnDestroy {
           case 2:{
                   console.log("User 1",this.userStateCode)
                   break;
-                 }                 
+                 }
          }
 
       }
     );
   }
+
+
 }

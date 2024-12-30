@@ -14,8 +14,10 @@
 
             </span>
             <input class="border-2 p-1 m-1 " type="button" value="Show Info"
-                   [routerLink]="['/users/userInfo']"
-                   [routerP]
+                   [routerLink]="['/users/userInfo',item.userId]"
+                   [queryParams]="{userId:item.userId}"
+                   fragment="Loading"
+
                    (click)="setUserId(item.userId)"
             >
           </div>
@@ -29,18 +31,38 @@
 
   </ng-container>
 
+  <input class="p-2 border-2 m-2 hover:bg-slate-300" type="button"
+         value="Show User Id With By OnClick Method"
+         (click)="setNavigate(0)"
+         >
+  <br>
+  <input class="p-2 border-2 m-2 hover:bg-slate-300" type="button"
+         value="Show User Id With By OnClick Method"
+         (click)="setNavigate(1)"
+         >
+  <br>
+
+
+  <div>
+    <ul class="flex flex-row gap-5 bg-slate-100 p-2">
+      <li ><a  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/users/userInfo/0']" [queryParams]="{'userInfo':'0'}" href="#">     Login Page</a> </li>
+      <li ><a  [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/users/userNameInfo/1']" [queryParams]="{'userInfo':'0'}" href="#">   Account Page</a> </li>
+
+    </ul>
+  </div>
+
+
+  <router-outlet></router-outlet>
   <ng-template [ngIf]="userId != undefined" [ngIfElse]="userIdElse">
-     <router-outlet></router-outlet>
+
   </ng-template>
 
   <ng-template #userIdElse>
 
     <a class="hover:underline hover:text-blue-700"
-      href="#"
-      [queryParams]="{name:'saeed'}"
-      [routerLink]="['/users',10]" > Show Route On users/:id </a>
+      href="#"> Show Route On users/:id </a>
 
-      <router-outlet></router-outlet>
+
   </ng-template>
 
 </div>

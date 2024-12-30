@@ -12,9 +12,10 @@ export const routes: Routes = [
 
   { path: "users",
      loadComponent:()=>import('../pages/temp/users/users/users.component').then(c=>c.UsersComponent),
-
+     data: { reuse: true },
      children:[
-          {path:"userInfo/:Id",component:UserInfoComponent,},
+          {path:"userInfo/:Id",component:UserInfoComponent,    data: { reuse: true },},
+          {path:"userNameInfo/:Id",component:UserInfoComponent,    data: { reuse: true },},
           //{path:":name",component:UserInfoComponent}
       ]
 
