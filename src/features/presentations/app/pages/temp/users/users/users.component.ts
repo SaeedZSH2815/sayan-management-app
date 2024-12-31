@@ -15,8 +15,8 @@ import { Location } from '@angular/common';
     RouterOutlet,CommonModule,UserActiveComponent,UserInactiveComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  providers:[UserService,   
-     { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
+  providers:[UserService,
+   //  { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
     ]
 })
 export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
   constructor(private userService :UserService
              ,private activeRouter : ActivatedRoute
              ,private _router : Router
-  
+
              ){
 
 

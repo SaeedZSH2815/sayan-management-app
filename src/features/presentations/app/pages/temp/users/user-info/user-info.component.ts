@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { CompilerConfig } from '@angular/compiler';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppUtility } from '../../../../../../../utils/utility';
+import { AuthService } from '../../../../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-user-info',
@@ -14,6 +15,7 @@ import { AppUtility } from '../../../../../../../utils/utility';
 export class UserInfoComponent implements OnInit,OnDestroy {
 
 
+  auth = inject(AuthService);
   private _userStateCode : number = 0;
 
   public set userStateCode(clValue : number) {
@@ -27,9 +29,9 @@ export class UserInfoComponent implements OnInit,OnDestroy {
 
   userId : number = 0;
   routeSubscribtion? : Subscription;
-  constructor(private activatedRoute : ActivatedRoute){
+  constructor(private activatedRoute : ActivatedRoute,private _router :Router){
   }
-  
+
   ngOnDestroy(): void {
 
    if(this.routeSubscribtion){
@@ -38,16 +40,18 @@ export class UserInfoComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-      
+    console.log("this.auth.loggedIn",this.auth.loggedIn);
     this.routeSubscribtion = this.activatedRoute.queryParams.subscribe(
       (param : Params)=>{
+        console.log("Params",param);
+        this.userStateCode = parseInt(param['userId']);
         if (param['userId'])
         {
-          
+
          this.userId = parseInt(param['userId']);
          if(this.userId)
           this.userStateCode = this.userId;
-         console.log("parseInt",this.userStateCode);
+
         }
         else
         if(param['name'])        {
@@ -57,19 +61,21 @@ export class UserInfoComponent implements OnInit,OnDestroy {
          }
          switch(this.userStateCode){
           case 1:{
-                  console.log("User (1) ",this.userStateCode)
+                  //console.log("User (1) ",this.userStateCode)
                   break;
                  }
           case 2:{
-                  console.log("User (2) ",this.userStateCode)
+                  //console.log("User (2) ",this.userStateCode)
                   break;
                  }
-          default:{  console.log("User default ",this.userStateCode)}       
+          default:{  console.log("User default ",this.userStateCode)}
          }
 
       }
     );
   }
 
-
+  editUser():void{
+    this._router.navigate(["/users/userInfo/",1],{queryParamsHandling:"merge"});
+  }
 }
