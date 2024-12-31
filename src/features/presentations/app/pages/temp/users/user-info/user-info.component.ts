@@ -2,24 +2,41 @@ import { CommonModule } from '@angular/common';
 import { CompilerConfig } from '@angular/compiler';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AppUtility } from '../../../../../../../utils/utility';
 import { AuthService } from '../../../../../../../core/services/auth.service';
+import { UserService } from '../../../../../../../core/services/user.service';
+import { FormsModule } from '@angular/forms';
+import { CanDeactiveComponent } from './can-deactive-user-detail.guard';
 
 @Component({
   selector: 'app-user-info',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './user-info.component.html',
   styleUrl: './user-info.component.scss'
 })
-export class UserInfoComponent implements OnInit,OnDestroy {
+export class UserInfoComponent implements OnInit,OnDestroy, CanDeactiveComponent {
 
 
   auth = inject(AuthService);
-  private _userStateCode : number = 0;
+  userService = inject(UserService);
+
+  userName : string = "";
+  txtUserName : string = "";
+  private _userStateCode : number = -1;
+  userId : number = -1;
 
   public set userStateCode(clValue : number) {
     this._userStateCode = clValue;
+    if(this.userId>=0){
+     this.userName = this.userService.activeUsers[this.userId];
+     this.txtUserName = this.userService.activeUsers[this.userId];
+     console.log("User :",this.userService.activeUsers[this.userId])}
+    else
+     {this.userName = "" ;
+      this.txtUserName= "" ;
+     }
+
   }
 
   public get userStateCode() : number {
@@ -27,9 +44,18 @@ export class UserInfoComponent implements OnInit,OnDestroy {
   }
 
 
-  userId : number = 0;
+
   routeSubscribtion? : Subscription;
   constructor(private activatedRoute : ActivatedRoute,private _router :Router){
+  }
+
+  aCanDeactive(): Observable<boolean> | Promise<boolean> | boolean{
+    if(this.userName !== this.txtUserName)
+    {
+      confirm("Can you Discard change?");
+      return true;
+    }
+    else  return true;
   }
 
   ngOnDestroy(): void {
@@ -40,16 +66,16 @@ export class UserInfoComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("this.auth.loggedIn",this.auth.loggedIn);
+    
     this.routeSubscribtion = this.activatedRoute.queryParams.subscribe(
+    
       (param : Params)=>{
-        console.log("Params",param);
-        this.userStateCode = parseInt(param['userId']);
+        
         if (param['userId'])
         {
 
          this.userId = parseInt(param['userId']);
-         if(this.userId)
+         if(this.userId>=0)
           this.userStateCode = this.userId;
 
         }
@@ -60,11 +86,11 @@ export class UserInfoComponent implements OnInit,OnDestroy {
            this.userStateCode = 1;
          }
          switch(this.userStateCode){
-          case 1:{
+          case 0:{
                   //console.log("User (1) ",this.userStateCode)
                   break;
                  }
-          case 2:{
+          case 1:{
                   //console.log("User (2) ",this.userStateCode)
                   break;
                  }
@@ -76,6 +102,6 @@ export class UserInfoComponent implements OnInit,OnDestroy {
   }
 
   editUser():void{
-    this._router.navigate(["/users/userInfo/",1],{queryParamsHandling:"merge"});
+    
   }
 }

@@ -10,6 +10,7 @@ import { LogService } from '../../../../core/services/log-service/log.service';
 import { appMainroutes } from './main-routes';
 import { AuthGuard } from './guard-services/auth.guard';
 import { AuthService } from '../../../../core/services/auth.service';
+import { CanDeactiveUserInfoGuard } from '../pages/temp/users/user-info/can-deactive-user-detail.guard';
 
 
 export const appConfig: ApplicationConfig = {
@@ -28,6 +29,7 @@ export const appConfig: ApplicationConfig = {
     LogService,
     AuthService,
     AuthGuard,
+    CanDeactiveUserInfoGuard,
    // { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
 
 

@@ -77,6 +77,7 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
   }
 
   setNavigate(clId : number):void{
+    
     this.userId = clId;
 
 
@@ -84,6 +85,6 @@ export class UsersComponent implements OnInit,AfterViewInit, OnDestroy{
     this._router.navigate(["/users/userInfo/",clId],{
                            queryParams:{userId:clId},/* replaceUrl: true*/ } );
 
-    console.log("Na",clId);
+    console.log("Navaigate : ",clId);
   }
 }

@@ -1,21 +1,23 @@
-<div class="">
+<div class="bg-slate-300">
 
     <button (click)="editUser()" type="button">Edit User</button>
+    <input type="text" name="txtUserName" id="txtuserId" [(ngModel)]="txtUserName" >
+    <input >
     @switch (userStateCode) {
 
-    @case (0) {
+    @case (-1) {
       <div class="">
        <h2 class="bg-slate-300 p-2">User State Code {{userStateCode}}</h2>
       </div>
      }
 
-     @case (1) {
+     @case (0) {
         <div class="">
           <h2 class="bg-slate-300 p-2">User State Code {{userStateCode}}</h2>
         </div>
        }
 
-     @case (2) {
+     @case (1) {
         <div class="">
           <h2 class="bg-slate-300 p-2">User State Code {{userStateCode}}</h2>
         </div>
