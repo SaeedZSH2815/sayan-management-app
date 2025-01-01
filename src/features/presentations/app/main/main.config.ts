@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { AbpHttpInterceptor } from 'abp-ng2-module';
 import { UserRepository } from '../../../data-infru/repositories/user-repository';
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
 
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appMainroutes),
+    provideRouter(appMainroutes,withHashLocation()),
     provideHttpClient(),
     /* Custom Provider */
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },

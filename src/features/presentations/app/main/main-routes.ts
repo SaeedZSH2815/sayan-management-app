@@ -9,6 +9,7 @@ import { CanDeactiveUserInfoGuard } from '../pages/temp/users/user-info/can-deac
 import { ErrorComponent } from '../pages/temp/error/error.component';
 import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-resolve';
 import { UserDetailComponent } from '../pages/temp/users/user-detail/user-detail.component';
+import { UserFormComponent } from '../pages/temp/page-forms/user-form/user-form.component';
 
 
 export const appMainroutes : Routes = [
@@ -16,6 +17,7 @@ export const appMainroutes : Routes = [
   { path: "login",  component: UserLoginComponent },
 
   { path: "account", component: AccountPageComponent },
+  { path: "userForm", component: UserFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },
 
 

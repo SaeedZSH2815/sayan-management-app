@@ -10,8 +10,6 @@ export interface IUser{
 @Injectable()
 export class UserDetailResolve implements Resolve<IUser>{
 
-
-
   constructor(private _userService : UserService){
 
   }
