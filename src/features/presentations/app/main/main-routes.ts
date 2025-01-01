@@ -6,12 +6,18 @@ import { AuthGuard } from './guard-services/auth.guard';
 import { inject } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
 import { CanDeactiveUserInfoGuard } from '../pages/temp/users/user-info/can-deactive-user-detail.guard';
+import { ErrorComponent } from '../pages/temp/error/error.component';
+import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-resolve';
+import { UserDetailComponent } from '../pages/temp/users/user-detail/user-detail.component';
 
 
 export const appMainroutes : Routes = [
 
   { path: "login",  component: UserLoginComponent },
+
   { path: "account", component: AccountPageComponent },
+  { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },
+
 
   { path: "users"
     ,canActivate:[AuthGuard,
@@ -25,5 +31,9 @@ export const appMainroutes : Routes = [
       ]
 
   },
+
+  {path:"not-found",component:ErrorComponent,data:{message:"Page Not Found!",isMessage:true}},
+  {path:"**",redirectTo:"not-found"}
+
 
 ];
