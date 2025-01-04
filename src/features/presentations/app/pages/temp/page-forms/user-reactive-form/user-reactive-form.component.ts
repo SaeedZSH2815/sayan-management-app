@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentChecked, AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AppUtility } from '../../../../../../../utils/utility';
+import { UserService } from '../../../../../../../core/services/user.service';
+import { catchError, map, Observable, of, Subscription } from 'rxjs';
 
 
 const x=(c : FormControl)=>{
@@ -14,14 +16,20 @@ const x=(c : FormControl)=>{
   styleUrl: './user-reactive-form.component.scss',
   providers:[AppUtility]
 })
-export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterContentChecked {
+export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterContentChecked,OnDestroy {
 
   userFormGroupUserNameIsAdmin : boolean = false;
   isRequiredUserName : boolean = false;
 
-  constructor(private app : AppUtility){
+  checkIsAdminUser$? : Subscription;
+
+  constructor(private app : AppUtility,private _userService : UserService){
 
     console.log( this.app.ARoundStr("dfs",10));
+  }
+  ngOnDestroy(): void {
+    if(this.checkIsAdminUser$)
+      this.checkIsAdminUser$.unsubscribe();
   }
   genderList : string[] = ["male","female"];
   StreetList : string[] = ["Laleh","Sadaf"];
@@ -42,7 +50,8 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
   }
 
   userFormGroup : FormGroup = new FormGroup({
-    "cityName"   : new FormControl("cityName"),
+    "cityName"   : new FormControl("cityName",{asyncValidators:[this.validCityNameAsync.bind(this)]}),
+    
     "userName"   : new FormControl(null,[ Validators.required,this.validateIsAdmin.bind(this)]),
     "gender"     : new FormControl("female"),
     "userEmail"  : new FormControl(null,[Validators.required,Validators.email]),
@@ -58,7 +67,9 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
   });
 
   ngOnInit(): void {
-
+   this.checkIsAdminUser$= this._userService.checkIfUsernameExists("Arina1").subscribe(
+    (res)=>console.log("checkIfUsernameExists",res)
+   );
 
   }
 
@@ -104,5 +115,20 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
     validateIsAdmin(clControl : AbstractControl){
       return clControl.value != "Admin" ? {isAdmin : true}: null;
     }
- }
+
+    validCityNameAsync(clControl : AbstractControl):Observable<ValidationErrors | null> {
+     
+      // let p = new Promise<any>((resove,reject)=>{
+      //   setTimeout( ()=>{resove({"id":true})} ,1000)
+      // });
+      if(this._userService)
+      { return this._userService.checkIfCityNameExists(clControl.value).pipe(
+         map( (res) => (res ? { isHamedan: true } : null) ),
+        catchError((er)=>of(null))
+       );}
+      else
+      return of(null);
+//      return p;
+    }
+}
 
