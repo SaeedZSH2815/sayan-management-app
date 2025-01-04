@@ -1,60 +1,105 @@
 
-<form (ngSubmit)="onSubmit(userForm)" #userForm = "ngForm" class="max-w-3xl mx-auto">
-     <p>{{userForm.value | json}}</p>
-     <p> userModel.userCityName : {{userModel.userCityName}}</p>
-     <p> #userCityName : {{userCityName.className}}</p>
-     <br>
-     <p> #cityName : {{cityName.valid}}</p>
 
+<form  (ngSubmit)="onSubmit(userForm)" #userForm = "ngForm"   class="max-w-3xl mx-auto">
 
-
-     <div ngModelGroup="address">
-
-      <div class="mb-5">
-        <label  for="cityName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your CityName</label>
-        <input [(ngModel)]="userModel.cityName" #cityName = "ngModel"
-
-        [class.bg-red-800]="cityName.invalid"
-         name="cityName" type="text" id="cityName"
-         class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="City Name" required />
-      </div>
-
-      <div class="mb-5">
-        <label  for="streetName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Street Name</label>
-        <input ngModel name="streetName" type="text" id="streetName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Street Name" required />
-      </div>
-
-    </div>
-
-    <div ngModelGroup="userAddress">
-
-      <div class="mb-5">
-        <label  for="userCityName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your User City Name</label>
-        <input [(ngModel)]="userModel.userCityName" #userCityName name="userCityName" type="text" id="userCityName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User City Name" required />
-      </div>
-
-
-      <div class="mb-5">
-        <label  for="userStreetName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your User Street Name</label>
-        <input ngModel name="userStreetName" type="text" id="userStreetName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Street Name" required />
-      </div>
-
-    </div>
-
-
-     <div class="mb-5">
-      <label  for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-      <input ngModel name="emial" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+  <p>{{userForm.value | json}}</p>
+   <button (click)="setInit()" type="button">set Init</button>
+  <br>
+  <p>userModel.userStreetName : {{userModel.userStreetName}}</p>
+  <br>
+   
+  <br>
+  
+  <div ngModelGroup="userAddress" #userAddress = "ngModelGroup">
+   
+    <div class="mb-5">
+      <label for="txtCityName" 
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your City Name</label>
+      <input 
+           ngModel
+           name="txtCityName"
+           
+           type="text" id="txtCityName" 
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+           placeholder="Your City Name" required />
     </div>
     <div class="mb-5">
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-      <input ngModel  autocomplete="off" name="pass" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required placeholder="password" />
+      <label for="selectCityName" 
+         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Select City Name</label>     
+      
+       <select 
+        #selectCityName = "ngModel" 
+        [(ngModel)]="defualtSelectCity"
+        name="selectCityName" id="selectCityName">
+        <option value="" selected disabled hidden>Choose here</option>
+        <option value="Hamedan">Hamedan City</option>
+        <option value="Tehran">Tehran City</option>
+        <option value="Gilan">Gilan City</option>
+      </select>   
     </div>
-    <div class="flex items-start mb-5">
-      <div class="flex items-center h-5">
-        <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-      </div>
-      <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+
+    
+    <div class="mb-5">
+      <label for="txtUserStreetName" 
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your User Street  Name</label>
+      <input 
+           #ngUserStreetName = "ngModel"
+           [(ngModel)]="userModel.userStreetName"
+           name="txtUserStreetName"
+           [class.bg-red-500]="ngUserStreetName.invalid"
+           type="text" id="txtUserStreetName" 
+           class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+           placeholder="Your User Street  Name" required />
     </div>
-    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-  </form>
+
+  </div>
+  
+  
+  <br>
+  <div ngModelGroup="genderItemGroup"  #genderItemGroup  ngGenderModelGroup = "ngModelGroup">
+    <div *ngFor="let gender of genders; let i=index"  class="" >
+      <label for=""><input ngModel type="radio" #gender name="gender" id="{{'item'+i}}" [value]="gender" > {{gender}}</label>  
+     </div>
+  </div>
+
+  
+  <br>
+  <h3 class="p-2 m-2 border-2 border-blue-700 "
+      [class.bg-red-500]="!userAddress.valid"
+      
+      >this is ngModelGroup userAddress State : {{userAddress.valid}}</h3>
+  <br>
+
+  <div class="mb-5">
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+    <input 
+         #ngEmail = "ngModel"
+         [(ngModel)]="userModel.email"
+         name="txtEmail"
+         email
+         type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+    <span *ngIf="!ngEmail.valid && ngEmail.touched"
+     class="text-red-600"  
+     >Please Enter Vaid Email!</span> 
+  </div>
+
+  <div class="mb-5">
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+    <input 
+           ngModel
+           name="txtPassword"
+           type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+  </div>
+  <div class="flex items-start mb-5">
+    <div class="flex items-center h-5">
+      <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+    </div>
+    <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+  </div>
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+</form>
+
+<div *ngIf="isSubmited">
+  <p>This is User Name {{userData.cityName}}</p>
+  <p>This is User email {{userData.email}}</p>
+</div>

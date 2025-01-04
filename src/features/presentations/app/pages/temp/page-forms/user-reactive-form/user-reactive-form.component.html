@@ -1,16 +1,28 @@
 <div>
-  <form [formGroup]="userFormGroup"   class="container mx-auto p-4" action="">
-
+  <form [formGroup]="userFormGroup" (ngSubmit)="onSubmit()"  class="container mx-auto p-4" action="">
+    <input class="p-1 m-3 bg-gray-100 border-2 border-black" type="submit" value="Submit">
     <div class="mb-5">
       <label  for="userName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your UserName</label>
-
       <input
        #userName
        formControlName="userName"
        name="userName" type="text" id="userName"
        class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Name" required />
-      <span *ngIf="!userFormGroup.get('userName')?.valid && userFormGroup.get('userName')?.touched"
-         class="border border-red-500 font-semibold">This Is Invalid UserName</span>
+      
+      <ng-container *ngIf="!userFormGroup.get('userName')?.valid && userFormGroup.get('userName')?.touched">
+        <span 
+         class="flex border border-red-500 font-semibold">This Is Invalid UserName</span>
+        
+        <ng-container *ngIf="userFormGroup?.get('userName')?.errors?.['required']">
+          <span   class="flex border border-red-500 font-semibold"> This Is required </span>   
+        </ng-container>
+        <ng-container *ngIf="userFormGroupUserNameIsAdmin">
+          <span   class="flex border border-red-500 font-semibold"> This Is not UserAdmin </span>   
+        </ng-container>
+
+      </ng-container>
+      
+    
     </div>
 
     <div class="mb-5">
@@ -55,11 +67,11 @@
         <label  for="countryName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Country Name</label>
 
         <input
-         #countryName
+         #country
          formControlName="country"
-         name="countryName" type="text" id="countryNameId"
+         name="country" type="text" id="countryId"
          class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="CountryName" required />
-
+         <span *ngIf="!userFormGroup.get('userCityDataInfo.country')?.valid && userFormGroup.get('userCityDataInfo.country')?.touched">This Is InValid</span>
       </div>
 
       <div class="mb-5">

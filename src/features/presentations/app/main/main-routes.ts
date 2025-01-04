@@ -19,6 +19,7 @@ export const appMainroutes : Routes = [
 
   { path: "account", component: AccountPageComponent },
   { path: "userForm", component: UserFormComponent },
+  
   { path: "userReactiveForm", component: UserReactiveFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },
 

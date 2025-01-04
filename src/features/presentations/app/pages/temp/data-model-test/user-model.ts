@@ -3,6 +3,7 @@ export interface IUserModel
   userName : string;
   userCode : number;
 
+  email      : string;
   cityName   : string;
   userCityName   : string;
   userStreetName : string;

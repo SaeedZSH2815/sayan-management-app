@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../../../../core/services/user.service';
 import { CommonModule } from '@angular/common';
-import {AppUtility, sum} from '../../../../../../../utils/utility'
+import {AppUtility} from '../../../../../../../utils/utility'
 
 @Component({
   selector: 'app-user-active',
