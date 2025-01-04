@@ -10,6 +10,7 @@ import { ErrorComponent } from '../pages/temp/error/error.component';
 import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-resolve';
 import { UserDetailComponent } from '../pages/temp/users/user-detail/user-detail.component';
 import { UserFormComponent } from '../pages/temp/page-forms/user-form/user-form.component';
+import { UserReactiveFormComponent } from '../pages/temp/page-forms/user-reactive-form/user-reactive-form.component';
 
 
 export const appMainroutes : Routes = [
@@ -18,6 +19,7 @@ export const appMainroutes : Routes = [
 
   { path: "account", component: AccountPageComponent },
   { path: "userForm", component: UserFormComponent },
+  { path: "userReactiveForm", component: UserReactiveFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },
 
 

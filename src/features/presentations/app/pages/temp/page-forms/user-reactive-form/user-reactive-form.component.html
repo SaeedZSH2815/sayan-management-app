@@ -1,0 +1,97 @@
+<div>
+  <form [formGroup]="userFormGroup"   class="container mx-auto p-4" action="">
+
+    <div class="mb-5">
+      <label  for="userName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your UserName</label>
+
+      <input
+       #userName
+       formControlName="userName"
+       name="userName" type="text" id="userName"
+       class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Name" required />
+      <span *ngIf="!userFormGroup.get('userName')?.valid && userFormGroup.get('userName')?.touched"
+         class="border border-red-500 font-semibold">This Is Invalid UserName</span>
+    </div>
+
+    <div class="mb-5">
+      <label  for="userEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your userEmail</label>
+
+      <input
+       #userEmail
+       formControlName="userEmail"
+       name="userEmail" type="email" id="userEmail"
+       class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="userEmail" required />
+      <span *ngIf="!userFormGroup.get('userEmail')?.valid && userFormGroup.get('userEmail')?.touched"
+         class="border border-red-500 font-semibold">This Is Invalid userEmail</span>
+    </div>
+
+    <div class="mb-5">
+      <label  for="cityName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your CityName</label>
+
+      <input
+       #cityName
+       formControlName="cityName"
+       name="cityName" type="text" id="cityName"
+       class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="City Name" required />
+    </div>
+
+    <div class="mb-5">
+      <label  for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Gender Type</label>
+      <ng-container *ngFor="let gender of genderList;let I = index">
+        <div>
+           <input formControlName="gender"
+                  [value]="gender"
+                   class="p-2 m-2" type="radio" name="gender" id="{{'g'+I}}" placeholder="">
+           <span>{{gender }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+
+   <!-- formGroupControl -->
+    <div formGroupName="userCityDataInfo" class="pt-7">
+
+      <div class="mb-5">
+        <label  for="countryName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Country Name</label>
+
+        <input
+         #countryName
+         formControlName="country"
+         name="countryName" type="text" id="countryNameId"
+         class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="CountryName" required />
+
+      </div>
+
+      <div class="mb-5">
+        <label  for="streetId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Street Name</label>
+
+          <select formControlName="street" name="street" id="streetId" >
+            <ng-container *ngFor="let street of StreetList">
+             <option [value]="street">{{street}}</option>
+            </ng-container>
+          </select>
+        <span *ngIf="!userFormGroup.get('userCityDataInfo.street')?.valid && userFormGroup.get('userCityDataInfo.street')?.touched">This Is a
+          {{userFormGroup.get('userCityDataInfo.street')?.value}}
+        </span>
+        <span >This Is a Value [
+          {{userFormGroup.get('userCityDataInfo.street')?.value}} ]
+        </span>
+
+      </div>
+
+
+    </div>
+
+    <div formArrayName="hobbies">
+      <h2>form Array</h2>
+      <button type="button" class="" (click)="onAddHubby()">Add Hobby</button>
+      <div *ngFor="let hobbyControl of getHobbyControls();let i = index">
+       <input type="text" formControlName="{{'bubby'+i}}" >
+       <!-- [formControlName]="i"  -->
+      </div>
+
+    </div>
+
+
+  </form>
+</div>
