@@ -8,21 +8,21 @@
        formControlName="userName"
        name="userName" type="text" id="userName"
        class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Name" required />
-      
+
       <ng-container *ngIf="!userFormGroup.get('userName')?.valid && userFormGroup.get('userName')?.touched">
-        <span 
+        <span
          class="flex border border-red-500 font-semibold">This Is Invalid UserName</span>
-        
+
         <ng-container *ngIf="userFormGroup?.get('userName')?.errors?.['required']">
-          <span   class="flex border border-red-500 font-semibold"> This Is required </span>   
+          <span   class="flex border border-red-500 font-semibold"> This Is required </span>
         </ng-container>
         <ng-container *ngIf="userFormGroupUserNameIsAdmin">
-          <span   class="flex border border-red-500 font-semibold"> This Is not UserAdmin </span>   
+          <span   class="flex border border-red-500 font-semibold"> This Is not UserAdmin </span>
         </ng-container>
 
       </ng-container>
-      
-    
+
+
     </div>
 
     <div class="mb-5">
@@ -48,7 +48,7 @@
        <ng-container *ngIf="userFormGroup?.get('cityName')?.errors?.['isHamedan']">
          <span>dsfds</span>
        </ng-container>
-       
+
     </div>
 
     <div class="mb-5">
@@ -102,7 +102,7 @@
       <h2>form Array</h2>
       <button type="button" class="" (click)="onAddHubby()">Add Hobby</button>
       <div *ngFor="let hobbyControl of getHobbyControls();let i = index">
-       <input type="text" formControlName="{{'bubby'+i}}" >
+       <input type="text" [formControlName]="i" >
        <!-- [formControlName]="i"  -->
       </div>
 

@@ -11,6 +11,8 @@ import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-r
 import { UserDetailComponent } from '../pages/temp/users/user-detail/user-detail.component';
 import { UserFormComponent } from '../pages/temp/page-forms/user-form/user-form.component';
 import { UserReactiveFormComponent } from '../pages/temp/page-forms/user-reactive-form/user-reactive-form.component';
+import { AccountStudentFormComponent } from '../pages/temp/page-forms/account-student-form/account-student-form.component';
+import { ProjectFormComponent } from '../pages/temp/page-forms/project-form/project-form.component';
 
 
 export const appMainroutes : Routes = [
@@ -19,7 +21,9 @@ export const appMainroutes : Routes = [
 
   { path: "account", component: AccountPageComponent },
   { path: "userForm", component: UserFormComponent },
-  
+  { path: "accountStudent", component: AccountStudentFormComponent },
+  { path: "ProjectForm", component: ProjectFormComponent },
+
   { path: "userReactiveForm", component: UserReactiveFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },
 

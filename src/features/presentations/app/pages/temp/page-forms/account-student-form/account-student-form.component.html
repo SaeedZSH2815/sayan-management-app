@@ -1,0 +1,26 @@
+<form [formGroup]="accountForm" action="">
+
+  <div>
+    <input formControlName="firstName" type="text" name="firstName" id="firstNameId" placeholder="firstName">
+  </div>
+  <div>
+    <input formControlName="lastName" type="text" name="lastName" id="lastNameId" placeholder="lastName">
+  </div>
+  <div>
+    <input formControlName="phone" type="text" name="phone" id="phoneId" placeholder="phone">
+  </div>
+
+  <br>
+  <button (click)="addStudent()" >Add Student</button>
+
+  <div formArrayName="studentsArray">
+    <ng-container *ngFor="let student of studentsArray.controls; let i = index" >
+      <div [formGroupName]="i" >
+        <input formControlName="firstName" placeholder="First Name">
+        <input formControlName="lastName" placeholder="Last Name">
+        <input formControlName="dob" placeholder="Date of Birth">
+      </div>
+
+  </ng-container>
+  </div>
+</form>

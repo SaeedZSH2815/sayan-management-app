@@ -42,34 +42,57 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
       this.userFormGroupUserNameIsAdmin = true;
      else
       this.userFormGroupUserNameIsAdmin = false;
-     
-  
+
+
   }
   ngAfterContentInit(): void {
   //  console.log("ngAfterContentInit",this.userFormGroup.value);
   }
 
   userFormGroup : FormGroup = new FormGroup({
+
     "cityName"   : new FormControl("cityName",{asyncValidators:[this.validCityNameAsync.bind(this)]}),
-    
+
     "userName"   : new FormControl(null,[ Validators.required,this.validateIsAdmin.bind(this)]),
     "gender"     : new FormControl("female"),
     "userEmail"  : new FormControl(null,[Validators.required,Validators.email]),
     //------------
     "userCityDataInfo" : new FormGroup(
       {
-        "country" : new FormControl("Iran",[this.validateCountry.bind(this)]),
+        "country"  : new FormControl("Iran",[this.validateCountry.bind(this)]),
         "street"   : new FormControl(null,[Validators.required]),
       }
     ),
 
-    "hobbies" : new FormArray([])
+    "hobbies" : new FormArray([new FormControl(),])
   });
 
+
   ngOnInit(): void {
-   this.checkIsAdminUser$= this._userService.checkIfUsernameExists("Arina1").subscribe(
-    (res)=>console.log("checkIfUsernameExists",res)
-   );
+    this.checkIsAdminUser$= this._userService.checkIfUsernameExists("Arina1").subscribe(
+     (res)=>console.log("checkIfUsernameExists",res)
+    );
+
+
+    this.userFormGroup.patchValue({"userName" :"Saeed ZSh 2815"});
+    this.userFormGroup.patchValue({"gender" :"Male"});
+    this.userFormGroup.patchValue({"userEmail" :"SaeedZSh2815@gmail.com"});
+
+   this.userFormGroup.get("userName")?.valueChanges.pipe(
+    catchError((re)=>of(re))
+   ).subscribe(
+     (res)=>console.log("res")
+
+
+  );
+   this.userFormGroup.valueChanges.pipe(
+    catchError((re)=>of(re))
+   ).subscribe(
+     (res)=>console.log("res")
+
+
+  );
+
 
   }
 
@@ -82,6 +105,9 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
     (<FormArray>this.userFormGroup.get("hobbies")).push(control);
   }
 
+
+
+
   IsCountryValid(control: AbstractControl): ValidationErrors | null  {
 
     return (control: AbstractControl): ValidationErrors | null => {
@@ -93,10 +119,10 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
 
   }
 
-  
+
   private validateCountry(clControl: AbstractControl) {
-    
-    
+
+
     if(this.app)
      {
       this.app.ARoundStr("dfs",10);
@@ -117,7 +143,7 @@ export class UserReactiveFormComponent implements OnInit,AfterContentInit,AfterC
     }
 
     validCityNameAsync(clControl : AbstractControl):Observable<ValidationErrors | null> {
-     
+
       // let p = new Promise<any>((resove,reject)=>{
       //   setTimeout( ()=>{resove({"id":true})} ,1000)
       // });
