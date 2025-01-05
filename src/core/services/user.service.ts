@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { delay, map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -28,9 +28,31 @@ export class UserService {
      return of(true).pipe(delay(100));
    }
 
+   checkIsProjectNameExists(clValue : string):Observable<boolean>{
+    const l = new Observable<boolean>((subs)=>
+      {
+        if((clValue)&&(clValue == "Test") )
+        {
+          console.log("sub: ",clValue+"ccccccc")
+          subs.next(true);
+          subs.complete;
+        }
+        else
+         {
+          console.log("sub: ",clValue+" false")
+          subs.next(false);
+          subs.complete;
+         }
+      } 
+    );
+    return of(false);
+  }
+
+   
   checkIfUsernameExists(clValue : string):Observable<boolean>{
    return of(this.userList.some( (res) =>res == clValue)).pipe(delay(1000));
   }
+
 
   str(cls : string) :string{
     return cls + "fvfvf";

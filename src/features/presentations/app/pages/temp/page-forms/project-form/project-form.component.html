@@ -6,7 +6,7 @@
     <div class="flex flex-col w-full  border-gray-200 p-2">
       <label class="p-1" for="projectName">Project Name</label>
       <input formControlName="projectName" class="p-1 rounded-lg" type="text" name="projectName" id="projectNameId">
-
+      <span>{{projectFormGroup.get('projectName')?.valid}}</span>
     </div>
     <div class="flex flex-col w-full  border-gray-200 p-2">
       <label class="p-1 " for="email">Mail</label>
@@ -24,6 +24,7 @@
   </form>
 
   <div class="p-2">
+
     <ng-container *ngIf="projectList.length>0">
       <h1 class="bg-gray-300 p-2 font-bold">Project List</h1>
       <div *ngFor="let item of projectList;let i = index">
@@ -34,5 +35,13 @@
         </div>
       </div>
     </ng-container>
-   </div>
+
+  </div>
+</div>
+
+<div>
+  <button >Show Message</button>
+  <dialog id="dg">
+    <p>This is a message box.fdv</p>
+    </dialog>
 </div>
