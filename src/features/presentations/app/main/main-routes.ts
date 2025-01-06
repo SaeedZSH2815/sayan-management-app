@@ -23,6 +23,7 @@ export const appMainroutes : Routes = [
   { path: "userForm", component: UserFormComponent },
   { path: "accountStudent", component: AccountStudentFormComponent },
   { path: "ProjectForm", component: ProjectFormComponent },
+  { path: "ShoppingForm", loadComponent:()=>import("../../../presentations/app/pages/temp/page-forms/shopping-form/shopping-form.component").then((c)=>c.ShoppingFormComponent) },
 
   { path: "userReactiveForm", component: UserReactiveFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },

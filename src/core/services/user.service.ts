@@ -24,31 +24,36 @@ export class UserService {
      if(clValue == "Hamedan"){
       return of(false).pipe(delay(100));
      }
-     else 
+     else
      return of(true).pipe(delay(100));
    }
 
    checkIsProjectNameExists(clValue : string):Observable<boolean>{
-    const l = new Observable<boolean>((subs)=>
+    const l = new Observable<boolean>( (subs)=>
       {
         if((clValue)&&(clValue == "Test") )
         {
-          console.log("sub: ",clValue+"ccccccc")
+          //console.log("sub: ",clValue+"ccccccc")
           subs.next(true);
-          subs.complete;
+          subs.complete();
         }
         else
          {
-          console.log("sub: ",clValue+" false")
+          //console.log("sub: ",clValue+" false")
           subs.next(false);
-          subs.complete;
+          subs.complete();
          }
-      } 
+      }
     );
-    return of(false);
+    return l;
   }
 
-   
+  checkIsProjectNameExists2(clValue : string):Observable<boolean>{
+
+    return of(true);
+  }
+
+
   checkIfUsernameExists(clValue : string):Observable<boolean>{
    return of(this.userList.some( (res) =>res == clValue)).pipe(delay(1000));
   }
