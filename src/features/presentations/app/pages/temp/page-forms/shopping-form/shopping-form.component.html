@@ -1,4 +1,5 @@
 <div >
+  {{projectNameCaption | shortLength:5}}
   <form  #shoppingForm = "ngForm"  (ngSubmit)="addSubmitShopingForm(shoppingForm)"
          id="shoppingForm"
       action="">
@@ -10,7 +11,8 @@
         <input class="rounded-lg"
            name="productName"          
            type="text" name="productName" id="productNameId"
-
+           [(ngModel)]="projectNameCaption"
+           
            #productName = "ngModel"
            ngModel
          >
@@ -39,5 +41,13 @@
   <input class="btn-delete" type="button" value="Delete">  
   <input class="btn-green" type="button" value="Clear">
   
+ </div>
+
+ <div>
+   <ng-container *ngIf="shoppingList.length>0">
+   <h2>shoppingList.length : {{shoppingList.length}}</h2>
+   <div *ngFor="let item of shoppingList | arrayFilter:projectNameCaption:'productName' ">
+     <h1 class="p-2 font-semibold m-2 bg-slate-300">{{item.productName}}</h1>
+   </div></ng-container>
  </div>
 </div>
