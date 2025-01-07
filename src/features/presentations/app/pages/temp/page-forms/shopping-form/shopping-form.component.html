@@ -1,53 +1,15 @@
 <div >
-  {{projectNameCaption | shortLength:5}}
-  <form  #shoppingForm = "ngForm"  (ngSubmit)="addSubmitShopingForm(shoppingForm)"
-         id="shoppingForm"
-      action="">
-    <div class="grid grid-cols-12">
-      <div class="sm:col-span-12 md:col-span-6">
-      <div class="flex flex-col w-full p-2">
-        <label for="productName">Name</label>
 
-        <input class="rounded-lg"
-           name="productName"          
-           type="text" name="productName" id="productNameId"
-           [(ngModel)]="projectNameCaption"
-           
-           #productName = "ngModel"
-           ngModel
-         >
-       </div>
-       </div>
-       <div class="sm:col-span-12 md:col-span-6">
-        <div class="flex flex-col w-full p-2">
-        <label for="amount">Amount</label>
-        <input class="rounded-lg" type="number" id="amountId"
-          #amount = "ngModel"
-           name="amount" 
-           ngModel
-           [pattern]="amountInputPattern"
-
-        >
-        <span *ngIf="!amount.valid">This Is Invalid</span>
-       </div></div>
-    </div>
-
-
-  </form>
-
-
- <div class="pt-10 flex flex-row gap-3">
-  <input class="btn-primary" type="submit" form="shoppingForm" value="Add">
-  <input class="btn-delete" type="button" value="Delete">  
-  <input class="btn-green" type="button" value="Clear">
-  
- </div>
-
+  <app-shopping-edit></app-shopping-edit>
  <div>
-   <ng-container *ngIf="shoppingList.length>0">
-   <h2>shoppingList.length : {{shoppingList.length}}</h2>
-   <div *ngFor="let item of shoppingList | arrayFilter:projectNameCaption:'productName' ">
-     <h1 class="p-2 font-semibold m-2 bg-slate-300">{{item.productName}}</h1>
-   </div></ng-container>
+   <ng-container *ngIf="ingredients!.length>0">
+   <h2>shoppingList.length : {{ingredients.length}}</h2>
+
+   <ul *ngFor="let item of ingredients;let i=index   ">
+     <li (click)="onEdit(i)"  class="border-2 p-2 font-semibold m-2 bg-slate-300">{{item.name}}</li>
+   </ul>
+
+   </ng-container>
  </div>
+ <h2>ghgfhfg</h2>
 </div>

@@ -1,0 +1,9 @@
+{
+  "result" :
+[
+  {"AdmitTypeCode":"1","AdmitType":"بستري"},
+  {"AdmitTypeCode":"2","AdmitType":"سرپايي"},
+  {"AdmitTypeCode":"3","AdmitType":"اورژانسي"},
+  {"AdmitTypeCode":"4","AdmitType":"بستري موقت"}
+]
+}
