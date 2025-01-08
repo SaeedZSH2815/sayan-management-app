@@ -37,6 +37,9 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     console.log( data);
+    console.log( '/public/assets/adm.json' );
+
+
     this.subscription = this.slService.startedEditing.subscribe(
       (res:number)=>{
         //console.log("edit",res);
