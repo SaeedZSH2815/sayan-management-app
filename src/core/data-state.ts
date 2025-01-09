@@ -11,5 +11,10 @@ export class DataSuccess<T> extends DataState<T> {
 
 }
 
-export class DataFailed<T> extends DataState<T> { }
+export class DataFailed<T> extends DataState<T> {
+  constructor() {
+    super();
+    this.dataObject = undefined;
+  }
+}
 

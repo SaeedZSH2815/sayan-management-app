@@ -1,10 +1,30 @@
+import { dateTimestampProvider } from "rxjs/internal/scheduler/dateTimestampProvider";
+
+export interface IUserInfo{
+  isSuccess:	boolean;
+  message?:	string;
+  id	:number;
+  userName?	:string
+  fullName?:	string
+  sex:	boolean
+  rules?	:string
+  expireTime:	string;
+  drFullName?	:string;
+  drId:	number
+  drNationalCode?:	string;
+  hostName?	:string;
+  token?:	string
+}
+
+
+
 export interface IAuthenticateEntity {
   isSuccess : boolean;
   token     : string;
   expireTime: string;
   userName  : string;
   message?   : string;
-  userInfo  : number;
+  userInfo?  : IUserInfo;
 }
 
 export class AuthenticateEntity implements IAuthenticateEntity{
@@ -13,7 +33,7 @@ export class AuthenticateEntity implements IAuthenticateEntity{
   expireTime: string = "";
   userName  : string = "";
   message   : string | undefined;
-  userInfo  : number = 0;
+  userInfo?  : IUserInfo;
 
 
   constructor(data?: IAuthenticateEntity) {
@@ -29,11 +49,29 @@ export class AuthenticateEntity implements IAuthenticateEntity{
   init(_data?: any) {
     if (_data) {
         this.isSuccess = _data["isSuccess"];
-        this.message = _data["message"];
-        this.id = _data["id"];
-        this.fullName = _data["fullName"];
+        this.token = _data["token"];
         this.expireTime = _data["expireTime"];
-        this.roleName = _data["roleName"];
+        this.userName = _data["userName"];
+        this.message = _data["message"];
+        this.message = _data["message"];
+
+        this.userInfo = {
+          drId:_data["userInfo"]["drId"],
+          expireTime:_data["userInfo"]["expireTime"],
+          id:_data["userInfo"]["id"],
+          isSuccess:_data["userInfo"]["isSuccess"],
+          sex:_data["userInfo"]["sex"],
+          drFullName:_data["userInfo"]["drFullName"],
+          drNationalCode:_data["userInfo"]["drNationalCode"],
+          fullName:_data["userInfo"]["fullName"],
+          hostName:_data["userInfo"]["hostName"],
+          message:_data["userInfo"]["message"],
+          rules:_data["userInfo"]["rules"],
+          token:_data["userInfo"]["token"],
+          userName:_data["userInfo"]["userName"],
+
+        };
+
     }
 }
 
