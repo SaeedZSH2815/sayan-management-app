@@ -14,6 +14,7 @@ import { UserReactiveFormComponent } from '../pages/temp/page-forms/user-reactiv
 import { AccountStudentFormComponent } from '../pages/temp/page-forms/account-student-form/account-student-form.component';
 import { ProjectFormComponent } from '../pages/temp/page-forms/project-form/project-form.component';
 import { PatientDoctorComponent } from '../pages/http-pages/patient-doctor/patient-doctor.component';
+import { SampleObserComponent } from '../pages/temp/page-forms/sample-obser/sample-obser.component';
 
 
 export const appMainroutes : Routes = [
@@ -26,6 +27,7 @@ export const appMainroutes : Routes = [
   { path: "ProjectForm", component: ProjectFormComponent },
   { path: "PatientDoctor", component: PatientDoctorComponent },
   { path: "ShoppingForm", loadComponent:()=>import("../../../presentations/app/pages/temp/page-forms/shopping-form/shopping-form.component").then((c)=>c.ShoppingFormComponent) },
+  { path: "SampleObser", component:SampleObserComponent },
 
   { path: "userReactiveForm", component: UserReactiveFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },

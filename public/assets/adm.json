@@ -1,8 +1,10 @@
 
 [
-  {"admitTypeCode":"1","admitType":"بستري"},
-  {"admitTypeCode":"2","admitType":"سرپايي"},
-  {"admitTypeCode":"3","admitType":"اورژانسي"},
-  {"admitTypeCode":"4","admitType":"بستري موقت"}
+  {"admitTypeCode":1,"admitType":"بستري"},
+  {"admitTypeCode":2,"admitType":"سرپايي"},
+  {"admitTypeCode":3,"admitType":"اورژانسي"},
+  {"admitTypeCode":4,"admitType":"بستري موقت"}
 ]
+
+
 
