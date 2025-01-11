@@ -1,0 +1,9 @@
+<ng-container *ngIf="permissionsEntity.length>0">
+  <div class="p-2 m-2">
+    <h2 class="bg-slate-600 p-2 ">Permission List( {{permissionsEntity.length}} )</h2>
+    <ul *ngFor="let item of permissionsEntity">
+      <li>{{item.id}} {{item.title}}</li>
+    </ul>
+  </div>
+</ng-container>
+

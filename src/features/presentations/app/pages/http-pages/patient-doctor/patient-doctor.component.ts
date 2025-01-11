@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { SayanOrderServicesService } from '../../../../../../core/services/sayan-orders-services/sayan-order-services.service';
+
 import { map, mergeAll,mergeMap, Observable, of, Subscription } from 'rxjs';
 import data from "../../../../../../../public/assets/adm.json"
 import srvViewData from "../../../../../../../public/assets/srvView.json"
@@ -8,18 +8,19 @@ import * as RxJS from "../../../../../../core/rxjs-operators";
 import { CommonModule } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-patient-doctor',
   imports: [CommonModule],
   templateUrl: './patient-doctor.component.html',
-  styleUrl: './patient-doctor.component.scss'
+  styleUrl: './patient-doctor.component.scss',providers:[]
 })
 export class PatientDoctorComponent implements OnInit,OnDestroy {
   getToken$? : Subscription;
   pList$? : Observable<any>;
   srvView$? : Observable<any>;
   address$? : Observable<any>;
-  constructor(private _sayanOrderServicesService: SayanOrderServicesService){
+  constructor(/*private _sayanOrderService: SayanOrderService*/){
 
     this.pList$ = new Observable((obs)=>{
       obs.next(data);
