@@ -16,6 +16,7 @@ import { UserService } from '../../../../core/services/user.service';
 import { AppUtility } from '../../../../utils/utility';
 
 
+
 export const appConfig: ApplicationConfig = {
 
   providers: [
@@ -36,6 +37,7 @@ export const appConfig: ApplicationConfig = {
     CanDeactiveUserInfoGuard,
     UserDetailResolve,
     AppUtility,
+
    // { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
 
 

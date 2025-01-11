@@ -53,25 +53,25 @@ export class AuthenticateEntity implements IAuthenticateEntity{
         this.expireTime = _data["expireTime"];
         this.userName = _data["userName"];
         this.message = _data["message"];
-        this.message = _data["message"];
 
-        this.userInfo = {
-          drId:_data["userInfo"]["drId"],
-          expireTime:_data["userInfo"]["expireTime"],
-          id:_data["userInfo"]["id"],
-          isSuccess:_data["userInfo"]["isSuccess"],
-          sex:_data["userInfo"]["sex"],
-          drFullName:_data["userInfo"]["drFullName"],
-          drNationalCode:_data["userInfo"]["drNationalCode"],
-          fullName:_data["userInfo"]["fullName"],
-          hostName:_data["userInfo"]["hostName"],
-          message:_data["userInfo"]["message"],
-          rules:_data["userInfo"]["rules"],
-          token:_data["userInfo"]["token"],
-          userName:_data["userInfo"]["userName"],
+        if(_data['userInfo']){
+          this.userInfo = {
+                         drId:_data["userInfo"]["drId"],
+                         expireTime:_data["userInfo"]["expireTime"],
+                         id:_data["userInfo"]["id"],
+                         isSuccess:_data["userInfo"]["isSuccess"],
+                         sex:_data["userInfo"]["sex"],
+                         drFullName:_data["userInfo"]["drFullName"],
+                         drNationalCode:_data["userInfo"]["drNationalCode"],
+                         fullName:_data["userInfo"]["fullName"],
+                         hostName:_data["userInfo"]["hostName"],
+                         message:_data["userInfo"]["message"],
+                         rules:_data["userInfo"]["rules"],
+                         token:_data["userInfo"]["token"],
+                         userName:_data["userInfo"]["userName"],
 
-        };
-
+          };
+        }
     }
 }
 
