@@ -1,0 +1,14 @@
+<p>{{counterNumber()}}</p>
+<p>{{userSignal().firstName + ' ' + userSignal().lastName + ' Age(' +   userSignal().age + ')' }}</p>
+<div class="grid grid-cols-12 gap-2 ">
+  <div class="col-span-6 bg-slate-200 justify-center items-center flex ">
+    <button (click)="incrementCounter()" type="button">Increment</button>
+  </div>
+  <div class="col-span-6 bg-slate-200 justify-center items-center flex ">
+    <button (click)="decrementCounter()" type="button">Decrement</button>
+  </div>
+
+  <!-- <button (click)="incrementCounter()" type="button">Increment</button>
+  <button (click)="decrementCounter()" type="button">Decrement</button> -->
+</div>
+

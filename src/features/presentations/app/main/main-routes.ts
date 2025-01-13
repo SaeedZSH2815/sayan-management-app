@@ -18,6 +18,7 @@ import { PatientDoctorComponent } from '../pages/http-pages/patient-doctor/patie
 import { SampleObserComponent } from '../pages/temp/page-forms/sample-obser/sample-obser.component';
 
 import { ObserFormComponent } from '../pages/temp/page-forms/obser-form/obser-form.component';
+import { OtherFormComponent } from '../pages/temp/page-forms/other-form/other-form.component';
 
 
 
@@ -33,6 +34,10 @@ export const appMainroutes : Routes = [
   { path: "ObserForm", component: ObserFormComponent },
   { path: "ShoppingForm", loadComponent:()=>import("../../../presentations/app/pages/temp/page-forms/shopping-form/shopping-form.component").then((c)=>c.ShoppingFormComponent) },
   { path: "SampleObser", component:SampleObserComponent },
+  { path: "otherPage", component:OtherFormComponent
+    ,loadChildren:()=>import("../../../../features/presentations/app/main/modules/other-components/other-components.module").then(c=>c.OtherComponentsModule)
+
+   },
 
   { path: "userReactiveForm", component: UserReactiveFormComponent },
   { path: "userResolve/:id", component: UserDetailComponent,resolve:{user1:UserDetailResolve} },

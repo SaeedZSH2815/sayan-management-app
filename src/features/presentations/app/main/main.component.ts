@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet,RouterLinkActive,RouterLink, CommonModule,HighLightBlueDirective, UnlessDirective],
+  imports: [RouterOutlet,RouterLinkActive,RouterLink, CommonModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
   schemas: [
