@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import * as RxJS from "../../../../../../../core/rxjs-operators";
 import { SayanOrderService } from '../../../../../../../core/services/sayan-orders-services/sayan-order.service';
 import { IPermissions,Permissions as PermissionsEntity } from '../../../../../../../core/data/entities/permission-entity';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../../alert/alert/alert.component';
 import { PlaceHolderDirective } from '../../../../../../../core/directives/place-holder.directive';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-obser-form',
@@ -12,24 +13,36 @@ import { PlaceHolderDirective } from '../../../../../../../core/directives/place
   templateUrl: './obser-form.component.html',
   styleUrl: './obser-form.component.scss'
 })
-export class ObserFormComponent {
+export class ObserFormComponent implements OnDestroy{
 
   @ViewChild(PlaceHolderDirective) appPlaceHolder? : PlaceHolderDirective;
   errorMsg :any = null;
+  placeCloseSubs$? : Subscription;
   permissionsEntity : PermissionsEntity[] = [];
   setError(){
-    console.log(this.appPlaceHolder?.vcRef)
+    
+    this.appPlaceHolder!.vcRef.clear();
     const alertComponent = this.appPlaceHolder?.vcRef.createComponent(AlertComponent);
+
     if(alertComponent)
      {
-      alertComponent.instance.message = "jkjkhjh";
-      this.errorMsg = alertComponent.instance.message;
-   //   alertComponent.instance.onClose = this.onHandleError;
+      
+      alertComponent.instance.message = "This Is a Message";     
+     
+      //alertComponent.instance.onClose = ()=>{this.onHandleError();}
+      //or
+      this.placeCloseSubs$ = alertComponent.instance.close.subscribe(
+        ()=>{
+          if(this.placeCloseSubs$)
+            this.placeCloseSubs$.unsubscribe();
+          this.appPlaceHolder!.vcRef.clear();
+        }       
+        
+      );
 
      }
 
- //   this.appPlaceHolder?.vcRef.clear();
-   // this.errorMsg= "fghfghfghfghgfhgf";
+ 
   }
   constructor(private _sayanOrderService : SayanOrderService){
  //   this._sayanOrderService.getToken().subscribe(console.log);
@@ -39,10 +52,16 @@ export class ObserFormComponent {
     //   }
     // );
   }
+  ngOnDestroy(): void {
+    if(this.placeCloseSubs$)
+      this.placeCloseSubs$.unsubscribe();
+  }
 
   onHandleError(){
-    this.errorMsg = null;
+    if(this.appPlaceHolder)
+     this.appPlaceHolder.vcRef.clear();
   }
+
   ProccessPermissionList(clValue : any){
 
     if(clValue){

@@ -33,7 +33,7 @@ export const appMainroutes : Routes = [
   { path: "PatientDoctor", component: PatientDoctorComponent },
   { path: "ObserForm", component: ObserFormComponent },
   { path: "ShoppingForm", loadComponent:()=>import("../../../presentations/app/pages/temp/page-forms/shopping-form/shopping-form.component").then((c)=>c.ShoppingFormComponent) },
-  { path: "SampleObser", component:SampleObserComponent },
+  
   { path: "otherPage", component:OtherFormComponent
     ,loadChildren:()=>import("../../../../features/presentations/app/main/modules/other-components/other-components.module").then(c=>c.OtherComponentsModule)
 

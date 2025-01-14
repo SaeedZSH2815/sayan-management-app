@@ -13,13 +13,15 @@ export class AlertComponent implements OnDestroy {
 
 
   constructor(){}
-  message :string = "";
+  @Input('message') message :string = "";
   @Output() close = new EventEmitter<void>();
 
+  
+  
   onClose(){
-
     this.close.emit();
   }
+
   ngOnDestroy(): void {
 
   }

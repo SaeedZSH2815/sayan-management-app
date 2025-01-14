@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import * as RxJS from "../../../../../../../core/rxjs-operators";
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { _admTypeJSON } from './mockData/_admType';
 import{IAdmType}from "../../../../../../../core/data/models/test-models/adm-type-interface";
+import { Subject, Subscription } from 'rxjs';
 //----------------------------------
 @Component({
   selector: 'app-sample-obser',
@@ -11,7 +12,12 @@ import{IAdmType}from "../../../../../../../core/data/models/test-models/adm-type
   templateUrl: './sample-obser.component.html',
   styleUrl: './sample-obser.component.scss'
 })
-export class SampleObserComponent {
+export class SampleObserComponent implements OnDestroy{
+
+
+  obsValue : number = 0;  
+  changeSubject : Subject<number> = new Subject<number>();
+  obs$? : Subscription;
 
   constructor(private _http:HttpClient){
     let t:string[]=["1","2"];
@@ -25,7 +31,11 @@ export class SampleObserComponent {
     // RxJS.from(_admTypeJSON)
     // .pipe(RxJS.tap(v=>console.log(v)))
     // .subscribe();
-    
+    this.obs$ =this.changeSubject.subscribe((c)=>{
+     this.obsValue++;console.log(c);}
+     );
+
+
     RxJS.of(_admTypeJSON).
     pipe( 
            RxJS.map(v=> v as any[]),
@@ -57,6 +67,15 @@ export class SampleObserComponent {
     
     // );
 
+  }
+  ngOnDestroy(): void {
+   if(this.obs$)
+     this.obs$.unsubscribe();
+  }
+
+  onClick(){
+
+    this.changeSubject.next(12);
   }
 
 }

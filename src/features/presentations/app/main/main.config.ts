@@ -14,21 +14,21 @@ import { CanDeactiveUserInfoGuard } from '../pages/temp/users/user-info/can-deac
 import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-resolve';
 import { UserService } from '../../../../core/services/user.service';
 import { AppUtility } from '../../../../utils/utility';
+import { provideStore } from '@ngrx/store';
+import { counterReducer } from './state-store/counter.reducer';
 
 
 
 export const appConfig: ApplicationConfig = {
 
   providers: [
-
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appMainroutes,withHashLocation()),
+    provideRouter(appMainroutes, withHashLocation()),
     provideHttpClient(),
     /* Custom Provider */
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
     { provide: IUserRepository, useClass: UserRepository },
     provideAnimationsAsync(),
-
     AccountService,
     LogService,
     AuthService,
@@ -37,11 +37,6 @@ export const appConfig: ApplicationConfig = {
     CanDeactiveUserInfoGuard,
     UserDetailResolve,
     AppUtility,
-
-   // { provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy }
-
-
-
-
-  ]
+    provideStore({counter:counterReducer,cont2:counterReducer})
+]
 };
