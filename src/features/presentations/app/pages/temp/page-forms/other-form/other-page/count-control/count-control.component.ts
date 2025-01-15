@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { IncrementAction } from '../../../../../../main/store-ngrx/store-count/action-count/increment-action';
 import { AppUtility } from '../../../../../../../../../utils/utility';
+import { selectconterFn } from '../../../../../../main/store-ngrx/store-count/counter-selectors/select-count';
 
 @Component({
   selector: 'app-count-control',
@@ -13,7 +14,7 @@ import { AppUtility } from '../../../../../../../../../utils/utility';
 })
 export class CountControlComponent implements OnInit,OnDestroy {
 
-  count$? : Observable<{age:number,firstName:string}>;
+  count$? : Observable<{conterFn : {age:number;firstName:string}}>;
   count2$? : Observable<number>;
   countSubs? : Subscription;
 
@@ -22,7 +23,8 @@ export class CountControlComponent implements OnInit,OnDestroy {
   ){
 
   //  this.count2$ = this.storeFn.select('conterFnReducer');
-    this.count$ = this.store.select('conterFn');
+  //  this.count$ = this.store.select('conterFn');
+     this.count$ = this.store.select(selectconterFn);
     //this.countSubs = this.count$.subscribe(console.log)
 
   }
