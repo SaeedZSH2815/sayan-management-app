@@ -13,6 +13,7 @@ export class SignalFormComponent {
 
 
    incrementCounter(){
+    const isIEOrEdge = /Chrome\s|trident\/|edge\//i.test(window.navigator.userAgent);
 
     if(this.counterNumber() == 20)
     {

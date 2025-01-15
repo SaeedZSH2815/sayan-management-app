@@ -15,7 +15,8 @@ import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-r
 import { UserService } from '../../../../core/services/user.service';
 import { AppUtility } from '../../../../utils/utility';
 import { provideStore } from '@ngrx/store';
-import { counterReducer } from './state-store/counter.reducer';
+import { conterFnReducer, counterReducer } from './store-ngrx/store-count/count-reducers/count-reducer';
+
 
 
 
@@ -37,6 +38,7 @@ export const appConfig: ApplicationConfig = {
     CanDeactiveUserInfoGuard,
     UserDetailResolve,
     AppUtility,
-    provideStore({counter:counterReducer,cont2:counterReducer})
+    //store ngrx
+    provideStore({counter : counterReducer,conterFn:conterFnReducer})
 ]
 };
