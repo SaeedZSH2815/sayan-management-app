@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
 
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appMainroutes, withHashLocation()),
+    provideRouter(appMainroutes/*, withHashLocation()*/),
     provideHttpClient(),
     /* Custom Provider */
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },

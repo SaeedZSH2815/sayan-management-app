@@ -1,9 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { UnlessDirective } from '../../../../core/directives/unless/unless.directive';
 import { HighLightBlueDirective } from '../../../../core/directives/high-light/high-light-blue.directive';
 import { CommonModule } from '@angular/common';
+import { SignalRService } from '../../../../core/services/signalr.service';
 
 @Component({
   selector: 'app-main',
@@ -15,10 +16,15 @@ import { CommonModule } from '@angular/common';
     NO_ERRORS_SCHEMA
   ]
 })
-export class MainComponent {
+export class MainComponent implements OnInit{
 
-  constructor(private _router : Router){
+  constructor(private _router : Router,
+    private s : SignalRService,
+  ){
 
+  }
+  ngOnInit(): void {
+  //  this.s.start();
   }
   OnRouter(clId : number):void{
     switch(clId){
