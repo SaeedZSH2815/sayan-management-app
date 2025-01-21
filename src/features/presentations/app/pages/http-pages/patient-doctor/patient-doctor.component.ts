@@ -51,20 +51,20 @@ export class PatientDoctorComponent implements OnInit,OnDestroy {
    this.pList$?.
    pipe(
 
-   
-   
-    RxJS.map( (v)=>{ let x :any[] = <any[]>v;  
+
+
+    RxJS.map( (v)=>{ let x :any[] = <any[]>v;
                      // let y=x.map(v=>v["admitType"]);
                       return {...v}}  ),
                       RxJS.mergeMap((v)=>this.ArrayOb(v)),
                       RxJS.tap( (  v   ) =>{  console.log(v["admitTypeCode"])} ),
- //    RxJS.map((v)=>{  let c:{admitTypeCode:number,admitType:string} = <{admitTypeCode:number,admitType:string}>v;  
+ //    RxJS.map((v)=>{  let c:{admitTypeCode:number,admitType:string} = <{admitTypeCode:number,admitType:string}>v;
               //        return {as:v["admitTypeCode"]} })
     //RxJS.tap(v=>console.log(v["0"]))
    // RxJS.map( (v1)=>{ let y :{} = v1;  return y["0"]}  )
   );
 
-   
+
 
  //  this.srvView$?.subscribe(console.log);
 
@@ -77,14 +77,14 @@ export class PatientDoctorComponent implements OnInit,OnDestroy {
         if (Object.prototype.hasOwnProperty.call(v, key)) {
           const element = v[key];
           //let c1:{admitType:string,admitTypeCode:number} = element as {admitType:string,admitTypeCode:number};
-          
+
           let y:{[k:string]:any}=element
             console.log("b",y)
-          obs.next(y);  
-          
+          obs.next(y);
+
         }
       }
-      
+
       obs.complete();
      }
    );

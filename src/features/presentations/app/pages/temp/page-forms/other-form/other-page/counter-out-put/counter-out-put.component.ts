@@ -4,16 +4,16 @@ import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-counter-out-put',
-  imports: [AsyncPipe],
+  imports: [],
   templateUrl: './counter-out-put.component.html',
   styleUrl: './counter-out-put.component.scss'
 })
 export class CounterOutPutComponent {
 
-  constructor(private _stor:Store<{cont2:number}>){
+  constructor(){
 
 
-    this._stor.select('cont2').subscribe(console.log);
+
   }
 
   inc(){

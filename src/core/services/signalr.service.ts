@@ -12,7 +12,7 @@ export class SignalRService {
                                          .build();
 
   constructor() {
-
+   this.hub.state
   }
 
   public start() : RxJS.Observable<boolean>{
@@ -37,18 +37,21 @@ export class SignalRService {
   receiveMessage(): RxJS.Observable<string> {
     return new RxJS.Observable<string>(
        (observer) => {
-
+        console.log("fd");
        if(this.hub!.state ==  SignalR.HubConnectionState.Connected )
-       this.hub!.on('ReceiveMessage', (clMessage: string) => {
+       { this.hub!.on('ReceiveMessage', (clMessage: string) => {
           observer.next(clMessage);
-       });
+       });}
+       else
+       observer.next("Disconnection");
 
 
     });
   }
 
-  public SendMessage(clMessage : string){
-    this.hub?.invoke('SendMessage', clMessage);
+  public SendMessage(clMessage : string):Promise<any>{
+    return this.hub?.invoke('SendMessage', clMessage);
+
   }
 
 

@@ -8,6 +8,7 @@ export class UserService {
   inactiveUsers = ["Arsa","Arina"];
 
   userList = ["Reza","Ali","Arsa","Arina"];
+
   constructor() { }
 
   setToActive(clId : number):void{

@@ -15,7 +15,13 @@ import { UserDetailResolve } from '../pages/temp/users/user-detail/user-detail-r
 import { UserService } from '../../../../core/services/user.service';
 import { AppUtility } from '../../../../utils/utility';
 import { provideStore } from '@ngrx/store';
-import { conterFnReducer, counterReducer } from './store-ngrx/store-count/count-reducers/count-reducer';
+
+import { provideEffects } from '@ngrx/effects';
+
+import { counterReducer } from './store-ngrx/store/counter.reducer';
+import { CounterEffects } from './store-ngrx/store/counter.effects';
+
+
 
 
 
@@ -24,7 +30,7 @@ export const appConfig: ApplicationConfig = {
 
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appMainroutes/*, withHashLocation()*/),
+    provideRouter(appMainroutes /*, withHashLocation()*/),
     provideHttpClient(),
     /* Custom Provider */
     { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
@@ -39,6 +45,7 @@ export const appConfig: ApplicationConfig = {
     UserDetailResolve,
     AppUtility,
     //store ngrx
-    provideStore({counter : counterReducer,conterFn:conterFnReducer})
+    provideStore({ counter: counterReducer }),
+    provideEffects([CounterEffects]),
 ]
 };

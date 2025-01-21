@@ -6,7 +6,7 @@ import { ShortLengthPipe } from '../../../../../../../../core/pipes/short-length
 import { ShoppingListService } from '../shopping-list.service';
 import { Subscription } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
-import * as data from "../../../../../../../../../public/assets/adm.json"
+//import * as data from "../../../../../../../../../public/assets/adm.json"
 
 @Component({
   selector: 'app-shopping-edit',
@@ -36,7 +36,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log( data);
+   // console.log( data);
     console.log( '/public/assets/adm.json' );
 
 

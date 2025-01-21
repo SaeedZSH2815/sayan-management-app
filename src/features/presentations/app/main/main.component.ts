@@ -5,10 +5,12 @@ import { UnlessDirective } from '../../../../core/directives/unless/unless.direc
 import { HighLightBlueDirective } from '../../../../core/directives/high-light/high-light-blue.directive';
 import { CommonModule } from '@angular/common';
 import { SignalRService } from '../../../../core/services/signalr.service';
+import { CounterOutputComponent } from '../pages/temp/count-store/counter-output/counter-output.component';
+import { CounterControlsComponent } from '../pages/temp/count-store/counter-controls/counter-controls.component';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet,RouterLinkActive,RouterLink, CommonModule],
+  imports: [RouterOutlet,RouterLinkActive,RouterLink, CommonModule,CounterOutputComponent,CounterControlsComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
   schemas: [
